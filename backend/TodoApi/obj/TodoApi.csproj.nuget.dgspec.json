@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lucasluann/Desktop/projects/fullstack-todo-list/backend/TodoApi/TodoApi.csproj": {}
+    "C:\\Users\\lucas.luann\\Desktop\\fullstack-todo-list\\backend\\TodoApi\\TodoApi.csproj": {}
   },
   "projects": {
-    "/Users/lucasluann/Desktop/projects/fullstack-todo-list/backend/TodoApi/TodoApi.csproj": {
+    "C:\\Users\\lucas.luann\\Desktop\\fullstack-todo-list\\backend\\TodoApi\\TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lucasluann/Desktop/projects/fullstack-todo-list/backend/TodoApi/TodoApi.csproj",
+        "projectUniqueName": "C:\\Users\\lucas.luann\\Desktop\\fullstack-todo-list\\backend\\TodoApi\\TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "/Users/lucasluann/Desktop/projects/fullstack-todo-list/backend/TodoApi/TodoApi.csproj",
-        "packagesPath": "/Users/lucasluann/.nuget/packages/",
-        "outputPath": "/Users/lucasluann/Desktop/projects/fullstack-todo-list/backend/TodoApi/obj/",
+        "projectPath": "C:\\Users\\lucas.luann\\Desktop\\fullstack-todo-list\\backend\\TodoApi\\TodoApi.csproj",
+        "packagesPath": "C:\\Users\\lucas.luann\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucas.luann\\Desktop\\fullstack-todo-list\\backend\\TodoApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/lucasluann/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\lucas.luann\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[9.0.5, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
@@ -85,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.410/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
