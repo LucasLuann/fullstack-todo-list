@@ -13,6 +13,42 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
+    networks:
+      - todo-network
+
+  backend:
+    build:
+      context: ./backend/TodoApi
+      dockerfile: Dockerfile
+    container_name: todoapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_CONNECTION=Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - todo-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: todofront
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge
 
 volumes:
   postgres_data:

@@ -13,6 +13,17 @@ var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseNpgsql(connectionString));
 
+// Adicionando CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,6 +36,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Habilitando CORS antes de outros middlewares
+app.UseCors();
 
 app.UseHttpsRedirection();
 
