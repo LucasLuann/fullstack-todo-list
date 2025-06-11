@@ -34,13 +34,14 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./client/vite-project
       dockerfile: Dockerfile
     container_name: todofront
     ports:
       - "5173:5173"
     environment:
       - VITE_API_URL=http://localhost:8080
+      - HOST=0.0.0.0                      # reforçando para o container
     depends_on:
       - backend
     networks:

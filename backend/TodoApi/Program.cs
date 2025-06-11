@@ -7,7 +7,7 @@ DotEnv.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION") 
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")
                        ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<TodoContext>(opt =>
@@ -18,10 +18,9 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        policy.AllowAnyOrigin()
+      .AllowAnyHeader()
+      .AllowAnyMethod();
     });
 });
 
@@ -78,5 +77,11 @@ app.MapDelete("/api/todos/{id}", async (int id, TodoContext db) =>
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<TodoContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
