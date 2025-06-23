@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Data;
 using TodoApi.Models;
+using TodoApi.DTOs;
 using dotenv.net;
 
 DotEnv.Load();
@@ -77,6 +78,25 @@ app.MapDelete("/api/todos/{id}", async (int id, TodoContext db) =>
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
+
+// Login
+app.MapPost("/api/login", async (LoginRequest login, TodoContext db) => {
+    var user = await db.Users.FirstOrDefaultAsync(u => u.Email == login.Email);
+
+    if (user is null)
+    {
+        return Results.NotFound(new { Message = "Usuário não encontrado" });
+    }
+
+    if (user.Password != login.Password)
+    {
+        return Results.Unauthorized(new { Message = "Senha inválida" });
+    }
+
+    return Results.Ok(new { Message = "Login realizado com sucesso!", user = new { user.Id, user.Email } });
+})
+
+
 
 using (var scope = app.Services.CreateScope())
 {
